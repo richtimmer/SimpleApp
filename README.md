@@ -35,11 +35,22 @@ If you wanted to preserve your data, it looks like self.down in ActiveRecord::Mi
 
 I looked at these sites:
 Reference these sites:
+
 https://github.com/richtimmer/forever-challenge
+
 http://stackoverflow.com/questions/10602662/simple-photo-gallery-gem
+
 http://balderapp.com/
 
 the balder app has a example of albums, as well as authentication. A good next step is to understand the interaction it has between photos and albums.
+
+In this file:
+app\models\photo.rb
+ code was added to allow uploading the images using carrierwave, mentioned earlier.
+ 
+In app\controllers\photos_controller.rb
+the control of the photos occurs, here.  This is where some of the interaction between an album and a photo would occur, filtering out the photos to be rendered by views\photos\show.html.erb using a a primary key from the photo database, and that same piece of data represented as a foreign key in the albums database.  This should be done in the index method of photos_controller.rb. 
+
 
 
 
