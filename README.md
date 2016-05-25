@@ -2,40 +2,18 @@
 Simple Rails App to upload photos
 
 Steps to get Rails up in a linux environment:
+see setup.bash for instructions on standing up the rails environment, I used a virtual box, and ran the ubuntu server.
 
-sudo apt-get update
-sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
-git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
-echo 'eval "$(rbenv init -)"' >> ~/.bashrc
-exec $SHELL
-git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
-exec $SHELL
-git clone https://github.com/rbenv/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
-rbenv install 2.3.1
-rbenv global 2.3.1
-ruby -v
-gem install bundler
-git config --global color.ui true
-git config --global user.name "Rich Timmer"
-git config --global user.email "--------------------"
-ssh-keygen -t rsa -b 4096 -C "--------------------"
-cat/home/home/.ssh/id_rsa.pub.
-cat /home/home/.ssh/id_rsa.pub
-ssh -T git@github.com
-curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-sudo apt-get install -y nodejs
-gem install rails -v 4.2.6
-rbenv rehash
-rails -v
-
-
+Not mentioned in setup.bash,
 Of course use your own e-mail and user name for git.
 Also where it says cat /home/home/.ssh/id_rsa.pub ,  copy that output and add it to git ssh keys.
 
 From here, the most useful website for starting your own gallery is:
 http://railsgirls-my.github.io/app/
+
+I started with the command:
+rails new simpleApp
+then followed the directions on the website.
 
 I made several false starts before arriving at that site.
 Getting the route correct is important, without it the page will not render at all.
@@ -49,5 +27,21 @@ skip the step:
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 It caused grief for reasons I don't yet understand, ( that's what you get for using code you don't understand ).
+
+I made several false starts in db\migrate, from there I learned that when you run a sql command
+running rake db:migrate will create the databases defined in db/migrate
+If this data is already in existence, the script will throw an error.  So delete the sql file, and re run the command.
+If you wanted to preserve your data, it looks like self.down in ActiveRecord::Migration might help you do that.
+
+I looked at these sites:
+Reference these sites:
+https://github.com/richtimmer/forever-challenge
+http://stackoverflow.com/questions/10602662/simple-photo-gallery-gem
+http://balderapp.com/
+
+the balder app has a example of albums, as well as authentication. A good next step is to understand the interaction it has between photos and albums.
+
+
+
 
 
